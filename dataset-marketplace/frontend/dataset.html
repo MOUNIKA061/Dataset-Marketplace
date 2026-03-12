@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<!--
+============================================================================
+Dataset Marketplace - Dataset Details Page
+View dataset info, visualization, and download
+============================================================================
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dataset Details - Dataset Marketplace</title>
+    
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Chart.js for data visualization -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <style>
+        .dataset-page { padding: 2rem 0; }
+        .dataset-info-card {
+            background: var(--glass-bg);
+            border-radius: var(--radius-xl);
+            padding: 2rem;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            margin-bottom: 2rem;
+        }
+        .dataset-header-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        .dataset-title { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .dataset-desc { color: var(--text-muted); margin-bottom: 1rem; }
+        .meta-badges { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
+        .meta-badge {
+            background: var(--gray-100);
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-md);
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .download-section { text-align: center; }
+        .download-btn {
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .download-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+        .file-info { font-size: 0.875rem; color: var(--text-muted); margin-top: 0.5rem; }
+        
+        /* Charts Section */
+        .charts-section {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .chart-card {
+            background: var(--glass-bg);
+            border-radius: var(--radius-xl);
+            padding: 1.5rem;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+        }
+        .chart-card h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+        .chart-wrapper { position: relative; height: 300px; }
+        
+        /* Stats Grid */
+        .stats-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .stat-card-item {
+            background: var(--white-color);
+            border-radius: var(--radius-lg);
+            padding: 1.25rem;
+            text-align: center;
+            border: 1px solid var(--gray-200);
+        }
+        .stat-card-item .stat-value {
+            font-size: 1.75rem;
+            font-weight: 700;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .stat-card-item .stat-label { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem; }
+        
+        /* Data Preview */
+        .preview-card {
+            background: var(--glass-bg);
+            border-radius: var(--radius-xl);
+            padding: 1.5rem;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+        }
+        .preview-card h3 { font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; }
+        .data-table-wrapper { overflow-x: auto; border-radius: var(--radius-md); }
+        .data-table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+        .data-table th, .data-table td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid var(--gray-200); }
+        .data-table th { background: var(--gray-100); font-weight: 600; position: sticky; top: 0; }
+        .data-table tr:hover { background: var(--gray-50); }
+        
+        @media (max-width: 768px) {
+            .charts-section { grid-template-columns: 1fr; }
+            .dataset-header-flex { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="search.html" class="nav-logo">Dataset Marketplace</a>
+            <div class="nav-links">
+                <a href="search.html">Search</a>
+                <a href="upload.html" id="upload-link" style="display: none;">Upload</a>
+                <span id="user-greeting" class="user-greeting"></span>
+                <button id="logout-btn" class="btn btn-outline btn-small" style="display: none;">Logout</button>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Main content -->
+    <main class="main-content">
+        <div class="container dataset-page">
+            <!-- Loading state -->
+            <div id="loading-state" style="text-align: center; padding: 4rem;">
+                <div class="spinner large"></div>
+                <p style="margin-top: 1rem; color: var(--text-muted);">Loading dataset...</p>
+            </div>
+            
+            <!-- Dataset content -->
+            <div id="dataset-content" style="display: none;">
+                <!-- Back link -->
+                <a href="search.html" style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--primary-color); margin-bottom: 1.5rem; text-decoration: none;">
+                    ← Back to Search
+                </a>
+                
+                <!-- Dataset Info Card -->
+                <div class="dataset-info-card">
+                    <div class="dataset-header-flex">
+                        <div class="dataset-details">
+                            <h1 id="dataset-title" class="dataset-title">Dataset Title</h1>
+                            <p id="dataset-desc" class="dataset-desc">Description</p>
+                            <div id="dataset-tags" class="tag-list" style="margin-bottom: 1rem;"></div>
+                            <div class="meta-badges">
+                                <span class="meta-badge">👤 <span id="owner-name">Owner</span></span>
+                                <span class="meta-badge">📅 <span id="upload-date">Date</span></span>
+                                <span class="meta-badge">📊 <span id="row-count">0</span> rows</span>
+                                <span class="meta-badge">📋 <span id="col-count">0</span> columns</span>
+                                <span class="meta-badge">⬇️ <span id="download-count">0</span> downloads</span>
+                            </div>
+                        </div>
+                        <div class="download-section">
+                            <button id="download-btn" class="download-btn" onclick="downloadDataset()">
+                                ⬇️ Download Dataset
+                            </button>
+                            <p class="file-info">
+                                <span id="file-type">CSV</span> • <span id="file-size">0 KB</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Quick Stats -->
+                <div id="stats-cards" class="stats-cards"></div>
+                
+                <!-- Charts Section -->
+                <div class="charts-section">
+                    <div class="chart-card">
+                        <h3>📊 Bar Chart - Column Statistics</h3>
+                        <p style="font-size: 0.8rem; color: #6b7280; margin-bottom: 0.5rem;">
+                            <span style="color: rgb(99, 102, 241);">■</span> Indigo = Mean | 
+                            <span style="color: rgb(34, 197, 94);">■</span> Green = Min | 
+                            <span style="color: rgb(251, 146, 60);">■</span> Orange = Max
+                        </p>
+                        <div class="chart-wrapper">
+                            <canvas id="bar-chart"></canvas>
+                        </div>
+                    </div>
+                    <div class="chart-card">
+                        <h3>🥧 Pie Chart - Category Distribution</h3>
+                        <p style="font-size: 0.8rem; color: #6b7280; margin-bottom: 0.5rem;">
+                            Each color represents a unique category value from your data
+                        </p>
+                        <div class="chart-wrapper">
+                            <canvas id="pie-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Additional Charts -->
+                <div class="charts-section">
+                    <div class="chart-card">
+                        <h3>📈 Line Chart - Data Trends</h3>
+                        <p style="font-size: 0.8rem; color: #6b7280; margin-bottom: 0.5rem;">
+                            Each line color represents a different numeric column
+                        </p>
+                        <div class="chart-wrapper">
+                            <canvas id="line-chart"></canvas>
+                        </div>
+                    </div>
+                    <div class="chart-card">
+                        <h3>🍩 Doughnut Chart - Secondary Breakdown</h3>
+                        <p style="font-size: 0.8rem; color: #6b7280; margin-bottom: 0.5rem;">
+                            Distribution across another categorical dimension
+                        </p>
+                        <div class="chart-wrapper">
+                            <canvas id="doughnut-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Data Preview -->
+                <div class="preview-card">
+                    <h3>📋 Data Preview (First 20 rows)</h3>
+                    <div class="data-table-wrapper">
+                        <table class="data-table">
+                            <thead id="preview-thead"></thead>
+                            <tbody id="preview-tbody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <script src="js/config.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/dataset.js"></script>
+</body>
+</html>

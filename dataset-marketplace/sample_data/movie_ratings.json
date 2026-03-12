@@ -1,0 +1,74 @@
+[
+  {
+    "movie_id": 1,
+    "title": "The Matrix",
+    "genre": "Sci-Fi",
+    "year": 1999,
+    "rating": 8.7,
+    "votes": 1850000,
+    "director": "Wachowskis"
+  },
+  {
+    "movie_id": 2,
+    "title": "Inception",
+    "genre": "Sci-Fi",
+    "year": 2010,
+    "rating": 8.8,
+    "votes": 2200000,
+    "director": "Christopher Nolan"
+  },
+  {
+    "movie_id": 3,
+    "title": "The Dark Knight",
+    "genre": "Action",
+    "year": 2008,
+    "rating": 9.0,
+    "votes": 2500000,
+    "director": "Christopher Nolan"
+  },
+  {
+    "movie_id": 4,
+    "title": "Pulp Fiction",
+    "genre": "Crime",
+    "year": 1994,
+    "rating": 8.9,
+    "votes": 1950000,
+    "director": "Quentin Tarantino"
+  },
+  {
+    "movie_id": 5,
+    "title": "Forrest Gump",
+    "genre": "Drama",
+    "year": 1994,
+    "rating": 8.8,
+    "votes": 1900000,
+    "director": "Robert Zemeckis"
+  },
+  {
+    "movie_id": 6,
+    "title": "The Shawshank Redemption",
+    "genre": "Drama",
+    "year": 1994,
+    "rating": 9.3,
+    "votes": 2600000,
+    "director": "Frank Darabont"
+  },
+  {
+    "movie_id": 7,
+    "title": "Interstellar",
+    "genre": "Sci-Fi",
+    "year": 2014,
+    "rating": 8.6,
+    "votes": 1700000,
+    "director": "Christopher Nolan"
+  },
+  {
+    "movie_id": 8,
+    "title": "Fight Club",
+    "genre": "Drama",
+    "year": 1999,
+    "rating": 8.8,
+    "votes": 2000000,
+    "director": "David Fincher"
+  }
+]

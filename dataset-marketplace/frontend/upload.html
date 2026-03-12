@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<!--
+============================================================================
+Dataset Marketplace - Upload Page
+Dataset upload with file preview functionality
+============================================================================
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Dataset - Dataset Marketplace</title>
+    
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <!-- Logo/Home link -->
+            <a href="search.html" class="nav-logo">Dataset Marketplace</a>
+            
+            <!-- Navigation links -->
+            <div class="nav-links">
+                <a href="search.html">Search</a>
+                <a href="upload.html" class="active">Upload</a>
+                <a href="admin.html" id="admin-link" style="display: none;">Admin</a>
+                <span id="user-greeting" class="user-greeting"></span>
+                <button id="logout-btn" class="btn btn-outline btn-small">Logout</button>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Main content area -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Page header -->
+            <div class="page-header">
+                <h1>Upload Dataset</h1>
+                <p>Share your data with the community</p>
+            </div>
+            
+            <!-- Upload form card -->
+            <div class="upload-card">
+                <form id="upload-form" class="upload-form">
+                    <!-- File upload section -->
+                    <div class="form-section">
+                        <h3>Dataset File</h3>
+                        
+                        <!-- Drag and drop area -->
+                        <div id="drop-zone" class="drop-zone">
+                            <div class="drop-zone-content">
+                                <div class="drop-icon">📁</div>
+                                <p>Drag and drop your file here</p>
+                                <p class="small">or</p>
+                                <label class="btn btn-outline">
+                                    Browse Files
+                                    <input 
+                                        type="file" 
+                                        id="file-input" 
+                                        name="file" 
+                                        accept=".csv,.json,.xlsx,.xls"
+                                        hidden
+                                    >
+                                </label>
+                                <p class="help-text">Supported: CSV, JSON, XLSX (Max 5MB)</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Selected file info -->
+                        <div id="file-info" class="file-info" style="display: none;">
+                            <div class="file-details">
+                                <span class="file-icon">📄</span>
+                                <div>
+                                    <p class="file-name" id="selected-file-name"></p>
+                                    <p class="file-size" id="selected-file-size"></p>
+                                </div>
+                            </div>
+                            <button type="button" id="remove-file" class="btn btn-text">Remove</button>
+                        </div>
+                    </div>
+                    
+                    <!-- File preview section -->
+                    <div id="preview-section" class="form-section" style="display: none;">
+                        <h3>Data Preview</h3>
+                        <div class="preview-stats">
+                            <span id="preview-rows">Rows: --</span>
+                            <span id="preview-cols">Columns: --</span>
+                        </div>
+                        <div class="table-container">
+                            <table id="preview-table" class="data-table">
+                                <thead id="preview-thead"></thead>
+                                <tbody id="preview-tbody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <!-- Metadata section -->
+                    <div class="form-section">
+                        <h3>Dataset Information</h3>
+                        
+                        <!-- Title -->
+                        <div class="form-group">
+                            <label for="title">Title *</label>
+                            <input 
+                                type="text" 
+                                id="title" 
+                                name="title" 
+                                required 
+                                maxlength="200"
+                                placeholder="Give your dataset a descriptive title"
+                            >
+                        </div>
+                        
+                        <!-- Description -->
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea 
+                                id="description" 
+                                name="description" 
+                                rows="4"
+                                placeholder="Describe your dataset, its contents, and potential use cases"
+                            ></textarea>
+                        </div>
+                        
+                        <!-- Tags -->
+                        <div class="form-group">
+                            <label for="tags">Tags</label>
+                            <input 
+                                type="text" 
+                                id="tags" 
+                                name="tags" 
+                                placeholder="e.g., finance, stocks, market, historical"
+                            >
+                            <small class="help-text">Comma-separated tags for better discoverability</small>
+                        </div>
+                        
+                        <!-- Visibility -->
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="is-public" name="is_public" checked>
+                                <span>Make this dataset public</span>
+                            </label>
+                            <small class="help-text">Public datasets can be found and downloaded by anyone</small>
+                        </div>
+                    </div>
+                    
+                    <!-- Error/Success messages -->
+                    <div id="upload-error" class="error-message" style="display: none;"></div>
+                    <div id="upload-success" class="success-message" style="display: none;"></div>
+                    
+                    <!-- Upload progress -->
+                    <div id="upload-progress" class="progress-container" style="display: none;">
+                        <div class="progress-bar">
+                            <div id="progress-fill" class="progress-fill"></div>
+                        </div>
+                        <span id="progress-text">Uploading...</span>
+                    </div>
+                    
+                    <!-- Submit button -->
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary btn-large">
+                            <span class="btn-text">Upload Dataset</span>
+                            <span class="btn-loader" style="display: none;"></span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Dataset Marketplace. All rights reserved.</p>
+    </footer>
+    
+    <script src="js/config.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/upload.js"></script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+# ============================================================================
+# Dataset Marketplace - Requirements
+# Python dependencies for Flask backend
+# ============================================================================
+
+# Flask web framework - lightweight WSGI web application framework
+Flask==2.3.3
+
+# Flask-CORS - Cross-Origin Resource Sharing support for API endpoints
+Flask-Cors==4.0.0
+
+# Flask-SQLAlchemy - SQL toolkit and ORM for Flask
+Flask-SQLAlchemy==3.1.1
+
+# PyMySQL - Pure Python MySQL client library
+PyMySQL==1.1.0
+
+# cryptography - Required for PyMySQL secure connections
+cryptography==41.0.4
+
+# boto3 - AWS SDK for Python (S3, Lambda, RDS interactions)
+boto3==1.28.57
+
+# python-dotenv - Load environment variables from .env file
+python-dotenv==1.0.0
+
+# Werkzeug - WSGI utility library (password hashing included in Flask)
+Werkzeug==2.3.7
+
+# PyJWT - JSON Web Token implementation for authentication
+PyJWT==2.8.0
+
+# pandas - Data manipulation and analysis library
+pandas==2.1.1
+
+# numpy - Numerical computing library for statistics
+numpy==1.25.2
+
+# scikit-learn - Machine learning library for recommendations
+scikit-learn==1.3.1
+
+# gunicorn - Production WSGI HTTP server (Linux/Mac only)
+# For Windows, use waitress instead
+gunicorn==21.2.0; sys_platform != 'win32'
+
+# waitress - Production WSGI server for Windows
+waitress==2.1.2; sys_platform == 'win32'

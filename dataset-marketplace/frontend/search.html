@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<!--
+============================================================================
+Dataset Marketplace - Search Page
+Dataset search with filters and AI recommendations
+============================================================================
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Datasets - Dataset Marketplace</title>
+    
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="search.html" class="nav-logo">Dataset Marketplace</a>
+            
+            <div class="nav-links">
+                <a href="search.html" class="active">Search</a>
+                <a href="upload.html" id="upload-link" style="display: none;">Upload</a>
+                <a href="admin.html" id="admin-link" style="display: none;">Admin</a>
+                <span id="user-greeting" class="user-greeting"></span>
+                <a href="index.html" id="login-link" class="btn btn-outline btn-small">Login</a>
+                <button id="logout-btn" class="btn btn-outline btn-small" style="display: none;">Logout</button>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Main content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Search header with search bar -->
+            <div class="search-header">
+                <h1>Discover Datasets</h1>
+                <p>Find the perfect dataset for your project</p>
+                
+                <!-- Search form -->
+                <form id="search-form" class="search-form">
+                    <div class="search-input-wrapper">
+                        <input 
+                            type="text" 
+                            id="search-query" 
+                            name="q" 
+                            placeholder="Search by title, description, or tags..."
+                            autocomplete="off"
+                        >
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </div>
+                    
+                    <!-- Filter options -->
+                    <div class="search-filters">
+                        <div class="filter-group">
+                            <label for="tags-filter">Tags:</label>
+                            <input 
+                                type="text" 
+                                id="tags-filter" 
+                                name="tags" 
+                                placeholder="e.g., finance, stocks"
+                            >
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label for="sort-select">Sort by:</label>
+                            <select id="sort-select" name="sort">
+                                <option value="created_at">Newest</option>
+                                <option value="downloads">Most Downloaded</option>
+                                <option value="title">Title A-Z</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Content grid: results + recommendations sidebar -->
+            <div class="content-grid">
+                <!-- Main results area -->
+                <div class="results-section">
+                    <!-- Results header -->
+                    <div class="results-header">
+                        <h2>Results</h2>
+                        <span id="results-count" class="results-count"></span>
+                    </div>
+                    
+                    <!-- Results grid -->
+                    <div id="results-grid" class="results-grid"></div>
+                    
+                    <!-- No results message -->
+                    <div id="no-results" class="no-results" style="display: none;">
+                        <div class="no-results-icon">🔍</div>
+                        <h3>No datasets found</h3>
+                        <p>Try different search terms or browse our recommendations</p>
+                    </div>
+                    
+                    <!-- Pagination -->
+                    <div id="pagination" class="pagination"></div>
+                </div>
+                
+                <!-- Recommendations sidebar -->
+                <aside class="recommendations-sidebar">
+                    <div class="sidebar-card">
+                        <h3>AI Recommendations</h3>
+                        <p class="sidebar-subtitle" id="rec-method">Based on popularity</p>
+                        
+                        <!-- Recommendations list -->
+                        <div id="recommendations-list" class="recommendations-list"></div>
+                    </div>
+                    
+                    <!-- Popular tags -->
+                    <div class="sidebar-card">
+                        <h3>Popular Tags</h3>
+                        <div id="popular-tags" class="tag-cloud">
+                            <!-- Tags will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="footer">
+        <p>&copy; 2024 Dataset Marketplace. All rights reserved.</p>
+    </footer>
+    
+    <script src="js/config.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/search.js"></script>
+</body>
+</html>

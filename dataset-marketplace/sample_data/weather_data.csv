@@ -1,0 +1,21 @@
+date,city,temperature_c,humidity_pct,wind_speed_kmh,precipitation_mm,condition
+2024-01-01,New York,2.3,65,15.2,0.0,Clear
+2024-01-01,Los Angeles,18.5,45,8.3,0.0,Sunny
+2024-01-01,Chicago,-5.2,78,22.1,2.5,Snow
+2024-01-01,Houston,15.8,55,12.4,0.0,Cloudy
+2024-01-01,Phoenix,12.3,30,6.7,0.0,Sunny
+2024-01-02,New York,-1.5,72,18.9,5.2,Snow
+2024-01-02,Los Angeles,19.2,42,7.1,0.0,Sunny
+2024-01-02,Chicago,-8.1,82,25.6,4.8,Snow
+2024-01-02,Houston,17.3,48,10.2,0.0,Clear
+2024-01-02,Phoenix,14.5,28,5.3,0.0,Sunny
+2024-01-03,New York,1.2,68,12.5,0.0,Cloudy
+2024-01-03,Los Angeles,20.1,38,9.8,0.0,Sunny
+2024-01-03,Chicago,-3.4,75,19.3,0.0,Cloudy
+2024-01-03,Houston,18.9,52,11.7,0.0,Clear
+2024-01-03,Phoenix,15.8,25,4.9,0.0,Sunny
+2024-01-04,New York,4.5,62,10.1,0.0,Clear
+2024-01-04,Los Angeles,21.3,35,6.5,0.0,Sunny
+2024-01-04,Chicago,-1.8,70,16.8,0.0,Clear
+2024-01-04,Houston,20.2,50,9.4,0.0,Sunny
+2024-01-04,Phoenix,17.2,22,3.8,0.0,Sunny

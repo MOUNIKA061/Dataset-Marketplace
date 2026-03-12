@@ -1,0 +1,16 @@
+order_id,customer_id,product_name,category,price_usd,quantity,order_date,shipping_country
+ORD001,CUST123,Wireless Headphones,Electronics,89.99,1,2024-01-15,USA
+ORD002,CUST456,Running Shoes,Sports,129.50,1,2024-01-15,Canada
+ORD003,CUST789,Coffee Maker,Home,75.00,1,2024-01-15,USA
+ORD004,CUST234,Laptop Stand,Electronics,45.99,2,2024-01-16,UK
+ORD005,CUST567,Yoga Mat,Sports,35.00,1,2024-01-16,USA
+ORD006,CUST890,Kitchen Scale,Home,28.50,1,2024-01-16,Germany
+ORD007,CUST123,Phone Case,Electronics,19.99,3,2024-01-17,USA
+ORD008,CUST345,Tennis Racket,Sports,185.00,1,2024-01-17,France
+ORD009,CUST678,Blender,Home,95.00,1,2024-01-17,USA
+ORD010,CUST901,Smart Watch,Electronics,299.99,1,2024-01-18,Canada
+ORD011,CUST234,Basketball,Sports,45.00,2,2024-01-18,USA
+ORD012,CUST567,Air Fryer,Home,120.00,1,2024-01-18,UK
+ORD013,CUST890,USB Hub,Electronics,32.99,1,2024-01-19,USA
+ORD014,CUST123,Dumbbells Set,Sports,89.00,1,2024-01-19,USA
+ORD015,CUST456,Toaster,Home,55.00,1,2024-01-19,Germany

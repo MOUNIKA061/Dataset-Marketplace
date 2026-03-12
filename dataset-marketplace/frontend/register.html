@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<!--
+============================================================================
+Dataset Marketplace - Registration Page
+New user account creation
+============================================================================
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Create your Dataset Marketplace account">
+    
+    <title>Register - Dataset Marketplace</title>
+    
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="auth-container">
+        <!-- Logo section -->
+        <div class="auth-header">
+            <h1 class="logo">Dataset Marketplace</h1>
+            <p class="tagline">Join our data community</p>
+        </div>
+        
+        <!-- Registration form card -->
+        <div class="auth-card">
+            <h2>Create Account</h2>
+            <p class="subtitle">Get started with your free account</p>
+            
+            <!-- Registration form -->
+            <form id="register-form" class="auth-form">
+                <!-- Username field -->
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input 
+                        type="text" 
+                        id="username" 
+                        name="username" 
+                        class="form-control"
+                        required 
+                        minlength="3"
+                        maxlength="80"
+                        placeholder="Choose a username"
+                        autocomplete="username"
+                    >
+                    <small class="help-text">3-80 characters, letters and numbers only</small>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        class="form-control"
+                        required 
+                        placeholder="Enter your email"
+                        autocomplete="email"
+                    >
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        class="form-control"
+                        required 
+                        minlength="6"
+                        placeholder="Create a password"
+                        autocomplete="new-password"
+                    >
+                    <small class="help-text">Minimum 6 characters</small>
+                </div>
+                
+                <!-- Confirm password field -->
+                <div class="form-group">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input 
+                        type="password" 
+                        id="confirm-password" 
+                        name="confirm-password" 
+                        class="form-control"
+                        required 
+                        placeholder="Confirm your password"
+                        autocomplete="new-password"
+                    >
+                </div>
+                
+                <div class="form-group">
+                    <label for="role">Account Type</label>
+                    <select id="role" name="role" class="form-control">
+                        <option value="user">User - Download datasets</option>
+                        <option value="owner">Owner - Upload and share datasets</option>
+                    </select>
+                    <small class="help-text">Choose Owner if you want to upload datasets</small>
+                </div>
+                
+                <!-- Error message area -->
+                <div id="register-error" class="error-message" style="display: none;"></div>
+                
+                <!-- Success message area -->
+                <div id="register-success" class="success-message" style="display: none;"></div>
+                
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-primary btn-full">
+                    <span class="btn-text">Create Account</span>
+                    <span class="btn-loader" style="display: none;"></span>
+                </button>
+            </form>
+            
+            <!-- Login link -->
+            <div class="auth-footer">
+                <p>Already have an account? <a href="index.html">Sign in</a></p>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/config.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/register.js"></script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<!--
+============================================================================
+Dataset Marketplace - Login Page
+Main entry point for user authentication
+============================================================================
+-->
+<html lang="en">
+<head>
+    <!-- Meta tags for proper rendering and mobile responsiveness -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dataset Marketplace - Find and share datasets">
+    
+    <!-- Page title shown in browser tab -->
+    <title>Login - Dataset Marketplace</title>
+    
+    <!-- Link to main stylesheet -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Google Fonts for modern typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Main container centers content vertically and horizontally -->
+    <div class="auth-container">
+        <!-- Logo and branding section -->
+        <div class="auth-header">
+            <h1 class="logo">Dataset Marketplace</h1>
+            <p class="tagline">Discover, share, and analyze datasets</p>
+        </div>
+        
+        <!-- Login form card -->
+        <div class="auth-card">
+            <h2>Welcome Back</h2>
+            <p class="subtitle">Sign in to your account</p>
+            
+            <!-- Login form - handled by auth.js -->
+            <form id="login-form" class="auth-form">
+                <!-- Email input field -->
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        class="form-control"
+                        required 
+                        placeholder="Enter your email"
+                        autocomplete="email"
+                    >
+                </div>
+                
+                <!-- Password input field -->
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        class="form-control"
+                        required 
+                        placeholder="Enter your password"
+                        autocomplete="current-password"
+                    >
+                </div>
+                
+                <!-- Error message display area (hidden by default) -->
+                <div id="login-error" class="error-message" style="display: none;"></div>
+                
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-primary btn-full">
+                    <span class="btn-text">Sign In</span>
+                    <!-- Loading spinner (hidden by default) -->
+                    <span class="btn-loader" style="display: none;"></span>
+                </button>
+            </form>
+            
+            <!-- Registration link -->
+            <div class="auth-footer">
+                <p>Don't have an account? <a href="register.html">Create one</a></p>
+            </div>
+        </div>
+        
+        <!-- Additional links -->
+        <div class="auth-links">
+            <a href="search.html">Browse Datasets</a>
+        </div>
+    </div>
+    
+    <!-- Configuration (must load first) -->
+    <script src="js/config.js"></script>
+    
+    <!-- API helper script -->
+    <script src="js/api.js"></script>
+    
+    <!-- Utility functions -->
+    <script src="js/utils.js"></script>
+    
+    <!-- Authentication script -->
+    <script src="js/auth.js"></script>
+    
+    <!-- Login page handler -->
+    <script src="js/login.js"></script>
+</body>
+</html>

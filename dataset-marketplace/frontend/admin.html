@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<!--
+============================================================================
+Dataset Marketplace - Admin Dashboard
+Analytics and platform management for administrators
+============================================================================
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Dataset Marketplace</title>
+    
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Chart.js for analytics charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="search.html" class="nav-logo">Dataset Marketplace</a>
+            
+            <div class="nav-links">
+                <a href="search.html">Search</a>
+                <a href="upload.html" id="upload-link">Upload</a>
+                <a href="admin.html" class="active">Admin</a>
+                <span id="user-greeting" class="user-greeting"></span>
+                <button id="logout-btn" class="btn btn-outline btn-small">Logout</button>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Main content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Access denied message for non-admins -->
+            <div id="access-denied" class="error-state" style="display: none;">
+                <div class="error-icon">🔒</div>
+                <h2>Access Denied</h2>
+                <p>You need administrator privileges to view this page.</p>
+                <a href="search.html" class="btn btn-primary">Go to Search</a>
+            </div>
+            
+            <!-- Admin content (shown only to admins) -->
+            <div id="admin-content" style="display: none;">
+                <!-- Page header -->
+                <div class="page-header">
+                    <h1>Admin Dashboard</h1>
+                    <p>Platform analytics and management</p>
+                </div>
+                
+                <!-- Overview stats cards -->
+                <div class="stats-overview">
+                    <div class="stat-card">
+                        <div class="stat-icon">👥</div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="total-users">--</span>
+                            <span class="stat-label">Total Users</span>
+                            <span class="stat-change" id="users-change">+0 this week</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">📊</div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="total-datasets">--</span>
+                            <span class="stat-label">Datasets</span>
+                            <span class="stat-change" id="datasets-change">+0 this week</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">⬇️</div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="total-downloads">--</span>
+                            <span class="stat-label">Downloads</span>
+                            <span class="stat-change" id="downloads-change">+0 this week</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">📈</div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="total-download-count">--</span>
+                            <span class="stat-label">Total Downloads</span>
+                            <span class="stat-change">All time</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Charts section -->
+                <div class="charts-row">
+                    <!-- Downloads timeline chart -->
+                    <div class="chart-card large">
+                        <div class="card-header">
+                            <h3>Downloads Over Time</h3>
+                            <select id="timeline-range" class="small-select">
+                                <option value="7">Last 7 days</option>
+                                <option value="30" selected>Last 30 days</option>
+                                <option value="90">Last 90 days</option>
+                            </select>
+                        </div>
+                        <canvas id="downloads-chart"></canvas>
+                    </div>
+                    
+                    <!-- User distribution chart -->
+                    <div class="chart-card">
+                        <div class="card-header">
+                            <h3>Users by Role</h3>
+                        </div>
+                        <canvas id="users-chart"></canvas>
+                    </div>
+                </div>
+                
+                <!-- Tables section -->
+                <div class="tables-row">
+                    <!-- Popular datasets table -->
+                    <div class="card table-card">
+                        <div class="card-header">
+                            <h3>Popular Datasets</h3>
+                        </div>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Dataset</th>
+                                    <th>Owner</th>
+                                    <th>Downloads</th>
+                                </tr>
+                            </thead>
+                            <tbody id="popular-datasets-table">
+                                <!-- Populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Recent activity table -->
+                    <div class="card table-card">
+                        <div class="card-header">
+                            <h3>Recent Activity</h3>
+                        </div>
+                        <div class="activity-list" id="activity-list">
+                            <!-- Populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Additional stats -->
+                <div class="additional-stats">
+                    <!-- Top uploaders -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Top Uploaders</h3>
+                        </div>
+                        <div class="leaderboard" id="top-uploaders">
+                            <!-- Populated by JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <!-- Tag distribution -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Popular Tags</h3>
+                        </div>
+                        <div class="tag-cloud-large" id="tag-distribution">
+                            <!-- Populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Loading state -->
+            <div id="loading-state" class="loading-state">
+                <div class="spinner large"></div>
+                <p>Loading dashboard...</p>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="footer">
+        <p>&copy; 2024 Dataset Marketplace. All rights reserved.</p>
+    </footer>
+    
+    <script src="js/config.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>
