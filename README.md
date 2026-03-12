@@ -12,7 +12,10 @@ Users can explore datasets, view statistics through charts, and receive simple *
 ### User Authentication
 
 * Register and login system
-* Role-based access control (Admin / Owner / User)
+* Role-based access control ( Owner / User)
+
+<img width="2624" height="1497" alt="image" src="https://github.com/user-attachments/assets/12884dcd-aa6a-4447-8a1f-f9635405c585" />
+
 
 ### Dataset Upload
 
@@ -20,10 +23,20 @@ Users can explore datasets, view statistics through charts, and receive simple *
 * Files stored securely in **AWS S3**
 * Metadata stored in **MySQL database**
 
+<img width="2699" height="1511" alt="image" src="https://github.com/user-attachments/assets/3c1bf27c-45d1-4160-9a85-ae000c5020c0" />
+
+
 ### Search & Filtering
 
 * Search datasets using **tags and keywords**
 * Dataset listing with preview information
+
+### AI Dataset Recommendations
+
+* Suggests related datasets based on **tag similarity**
+
+<img width="2618" height="1500" alt="image" src="https://github.com/user-attachments/assets/5bec0966-74fd-4446-897c-e6c019d34f4d" />
+
 
 ### Dataset Visualization
 
@@ -34,17 +47,18 @@ Users can explore datasets, view statistics through charts, and receive simple *
   * Median
   * Minimum
   * Maximum
-
-### AI Dataset Recommendations
-
-* Suggests related datasets based on **tag similarity**
-
-### Download Analytics
+ 
+  ### Download Analytics
 
 * Tracks dataset downloads
 * Admin dashboard showing popular datasets
 
 ---
+
+ <img width="2454" height="1484" alt="image" src="https://github.com/user-attachments/assets/5b72f840-7d90-4c3a-af3f-2cc7dcf743c9" />
+ <img width="2268" height="1504" alt="image" src="https://github.com/user-attachments/assets/7f15916a-333a-40c9-b966-10963c7a2f71" />
+
+
 
 # Tech Stack
 
